@@ -2,6 +2,7 @@
 using Recipe.View.MyFlyoutPage;
 using Recipe.View.NavPages;
 using Recipe.View.RecipeTabbedPage;
+using Recipe.ViewModels;
 
 namespace Recipe;
 
@@ -17,8 +18,12 @@ public partial class App : Application
 
 #if ANDROID || IOS
 			MainPage = new RecipeTabbedPage();
+            BindingContext = new CookBookViewModel();
 #else
         MainPage = new MyFlyoutPage();
+		//BindingContext = new CookBookViewModel();
 #endif
-	}
+    }
+
+   
 }

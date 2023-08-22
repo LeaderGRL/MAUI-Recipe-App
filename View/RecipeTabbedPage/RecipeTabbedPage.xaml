@@ -2,20 +2,52 @@
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Recipe.View.RecipeTabbedPage.RecipeTabbedPage"
+             xmlns:vm="clr-namespace:Recipe.ViewModels"
+             x:DataType="vm:CookBookViewModel"
              Title="RecipeTabbedPage"
             xmlns:Android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
             Android:TabbedPage.ToolbarPlacement="Bottom"
             SelectedTabColor="Green"
             UnselectedTabColor="Black">
-    <ContentPage Title="Home" IconImageSource="home_icon.png">
-        <Label Text="This is home content" Margin="20" FontAttributes="Bold"> </Label>
+    <ContentPage Title="CookBook" IconImageSource="cookbook_icon.png" Loaded="CookBook_Loaded">
+        <StackLayout Margin="20" Spacing="20">
+            <Border HeightRequest="100">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20">
+                        
+                    </RoundRectangle>
+                </Border.StrokeShape>
+                <Image Source="{Binding ImageURL}"
+                       HeightRequest="100">
+                </Image>
+            </Border>
+                 
+            <BoxView Color="Red"
+                 HeightRequest="100"
+                 CornerRadius="20"/>
+            <BoxView Color="Yellow"
+                 HeightRequest="100" 
+                 CornerRadius="20"/>
+            <BoxView Color="Blue"
+                 HeightRequest="100"
+                 CornerRadius="20"/>
+            <BoxView Color="Green"
+                 HeightRequest="100"
+                 CornerRadius="20"/>
+            <BoxView Color="Orange"
+                 HeightRequest="100"
+                 CornerRadius="20"/>
+            <BoxView Color="Purple"
+                 HeightRequest="100"
+                 CornerRadius="20"/>
+        </StackLayout>
     </ContentPage>
 
-    <ContentPage Title="CookBook" IconImageSource="cookbook_icon.png">
+    <ContentPage Title="Meal Plan" IconImageSource="mealplan_icon.png">
         <Label Text="This is CookBook content" Margin="20" FontAttributes="Bold"></Label>
     </ContentPage>
 
-    <ContentPage Title="MealPlan" IconImageSource="mealplan_icon.png">
+    <ContentPage Title="Setting" IconImageSource="home_icon.png">
         <Label Text="This is MealPlan content" Margin="20" FontAttributes="Bold"></Label>
     </ContentPage>
 </TabbedPage>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- FlyoutPage is page that manage 2 related pages of information -->
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe.View.MyFlyoutPage.MyFlyoutPage"
+             Title="MyFlyoutPage">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="My APP" BackgroundColor="White">
+            <VerticalStackLayout>
+                <Label Text="This is my first flyout page !" HorizontalTextAlignment ="Center" Margin="20">
+                    
+                </Label>
+            </VerticalStackLayout>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+       
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <ContentPage BackgroundColor="ForestGreen">
+                    <VerticalStackLayout>
+                        <Label Text="This is a flyout page details" HorizontalTextAlignment="Center" Margin="20">
+                            
+                        </Label>
+                    </VerticalStackLayout>
+                </ContentPage>
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+
+</FlyoutPage>

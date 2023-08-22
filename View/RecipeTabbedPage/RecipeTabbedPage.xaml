@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe.View.RecipeTabbedPage.RecipeTabbedPage"
+             Title="RecipeTabbedPage"
+            xmlns:Android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+            Android:TabbedPage.ToolbarPlacement="Bottom"
+            SelectedTabColor="Green"
+            UnselectedTabColor="Black">
+    <ContentPage Title="Home" IconImageSource="home_icon.png">
+        <Label Text="This is home content" Margin="20" FontAttributes="Bold"> </Label>
+    </ContentPage>
+
+    <ContentPage Title="CookBook" IconImageSource="cookbook_icon.png">
+        <Label Text="This is CookBook content" Margin="20" FontAttributes="Bold"></Label>
+    </ContentPage>
+
+    <ContentPage Title="MealPlan" IconImageSource="mealplan_icon.png">
+        <Label Text="This is MealPlan content" Margin="20" FontAttributes="Bold"></Label>
+    </ContentPage>
+</TabbedPage>

@@ -24,7 +24,7 @@ namespace Recipe.Services
             if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
                 return null;
 
-            return await _httpClient.GetFromJsonAsync<RecipeAPIResponse>($"{Constants.API_RECIPE_RANDOM}?apiKey={Constants.API_KEY}");
+            return await _httpClient.GetFromJsonAsync<RecipeAPIResponse>($"{Constants.API_RECIPE_RANDOM}?apiKey={Constants.API_KEY}&{Constants.API_RECIPE_RANDOM_NUMBER}={Constants.API_RECIPE_NUMBER_OF_RECIPE}");
         }
     }
 }

@@ -10,13 +10,24 @@ using System.Threading.Tasks;
 
 namespace Recipe.ViewModels
 {
-    public partial class CookBookViewModel : ObservableObject
+    public partial class CookBookViewModel
     {
         private readonly RecipeApiService _RecipeApiService;
 
+        //[ObservableProperty] // Generate code for our property to notify the UI when it changes
+        //private String imageURL;
+
+        //[ObservableProperty]
+        //private String title;
+
+        //[ObservableProperty]
+        //private String summary;
+
+        private RecipeHandler _recipeHandler;
         public CookBookViewModel()
         {
             _RecipeApiService = new RecipeApiService();
+            _recipeHandler = new RecipeHandler();
             CallRandomRecipeAPI();
         }
 
@@ -25,14 +36,7 @@ namespace Recipe.ViewModels
             await FetchRandomRecipeInformation();
         }
         
-        [ObservableProperty] // Generate code for our property to notify the UI when it changes
-        private String imageURL;
-
-        [ObservableProperty]
-        private String title;
-
-        [ObservableProperty]
-        private String summary;
+        
 
         [RelayCommand] // When event is trigger, call the associeted method in the view model
         private async Task FetchRandomRecipeInformation()
@@ -40,16 +44,56 @@ namespace Recipe.ViewModels
             var randomRecipeApiResponse = await _RecipeApiService.GetRandomRecipe();
             if (randomRecipeApiResponse != null)
             {
-                ImageURL = randomRecipeApiResponse.recipes[0].image;
-                Title = randomRecipeApiResponse.recipes[0].title;
-                Summary = randomRecipeApiResponse.recipes[0].summary;
+                for (int i = 0; i < Constants.API_RECIPE_NUMBER_OF_RECIPE; i++)
+                {
+                    _recipeHandler.Add(new RecipeItem(randomRecipeApiResponse.recipes[i].image, randomRecipeApiResponse.recipes[i].title, randomRecipeApiResponse.recipes[i].summary));
+                }
+                //ImageURL = randomRecipeApiResponse.recipes[0].image;
+                //Title = randomRecipeApiResponse.recipes[0].title;
+                //Summary = randomRecipeApiResponse.recipes[0].summary;
             }
             Debug.WriteLine("Fetch API !");
         }
 
-        private void CookBook_Loaded(object sender, EventArgs e)
-        {
+        public List<RecipeItem> RecipeList => _recipeHandler.RecipeList;
 
+        //public List<RecipeItem> GetRecipeList()
+        //{
+        //    return _recipeHandler.RecipeList;
+        //}
+    }
+
+    public class RecipeHandler
+    {
+        public List<RecipeItem> RecipeList { get; private set; }
+
+        public RecipeHandler()
+        {
+            RecipeList = new List<RecipeItem>();
+        }
+        
+        public void Add(RecipeItem recipeItem)
+        {
+            RecipeList.Add(recipeItem);
+        }
+    }
+
+    public partial class RecipeItem : ObservableObject
+    {
+        [ObservableProperty]
+        public String imageURL;
+
+        [ObservableProperty]
+        private String title;
+
+        [ObservableProperty]
+        private String summary;
+
+        public RecipeItem(String imageURL, String title, String summary)
+        {
+            ImageURL = imageURL;
+            Title = title;
+            Summary = summary;
         }
     }
 }

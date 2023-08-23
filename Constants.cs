@@ -15,6 +15,7 @@ namespace Recipe
         public const string API_RECIPE_INGREDIENTS = "{0}/ingredientWidget.json";
         public const string API_RECIPE_ANALYZE = "{0}/analyzeInstructions";
         public const string API_RECIPE_RANDOM = "random";
+        public const string API_RECIPE_RANDOM_NUMBER = "number";
         public const string API_RECIPE_SIMILAR = "{0}/similar";
         public const string API_RECIPE_SUMMARY = "{0}/summary";
         public const string API_RECIPE_EQUIPMENT = "{0}/equipmentWidget.json";
@@ -28,5 +29,6 @@ namespace Recipe
         public const string API_RECIPE_SEARCH_BY_INGREDIENTS_AND_NUTRIENTS_AND_CUISINE = "findByIngredients,findByNutrients,findByCuisine";
         public const string API_RECIPE_SEARCH_BY_INGREDIENTS_OR_NUTRIENTS_AND_CUISINE = "findByIngredients,findByNutrients,findByCuisine";
         public const string API_RECIPE_SEARCH_BY_INGREDIENTS_AND_NUTRIENTS_AND_CUISINE_AND_TYPE = "findByIngredients,findByNutrients,findByCuisine,findByType";
+        public const int API_RECIPE_NUMBER_OF_RECIPE = 5;
     }
 }

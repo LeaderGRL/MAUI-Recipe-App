@@ -9,8 +9,29 @@
             Android:TabbedPage.ToolbarPlacement="Bottom"
             SelectedTabColor="Green"
             UnselectedTabColor="Black">
-    <ContentPage Title="CookBook" IconImageSource="cookbook_icon.png" Loaded="CookBook_Loaded">
-        <StackLayout Margin="20" Spacing="20">
+    <ContentPage Title="CookBook" IconImageSource="cookbook_icon.png">
+        <ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" RowHeight="100" SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="vm:RecipeItem">
+                    <ViewCell>
+                        <StackLayout>
+                            <Border HeightRequest="100">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20">
+
+                                    </RoundRectangle>
+                                </Border.StrokeShape>
+                                <Image Source="{Binding ImageURL}"
+                                    WidthRequest="500"
+                                    HeightRequest="300">
+                                </Image>
+                            </Border>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--<StackLayout Margin="20" Spacing="20">
             <Border HeightRequest="100">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="20">
@@ -18,7 +39,8 @@
                     </RoundRectangle>
                 </Border.StrokeShape>
                 <Image Source="{Binding ImageURL}"
-                       HeightRequest="100">
+                       WidthRequest="500"
+                       HeightRequest="300">
                 </Image>
             </Border>
                  
@@ -37,10 +59,10 @@
             <BoxView Color="Orange"
                  HeightRequest="100"
                  CornerRadius="20"/>
-            <BoxView Color="Purple"
+            --><!--<BoxView Color="Purple"
                  HeightRequest="100"
-                 CornerRadius="20"/>
-        </StackLayout>
+                 CornerRadius="20"/>--><!--
+        </StackLayout>-->
     </ContentPage>
 
     <ContentPage Title="Meal Plan" IconImageSource="mealplan_icon.png">

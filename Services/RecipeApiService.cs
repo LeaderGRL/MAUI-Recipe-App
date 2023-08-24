@@ -24,7 +24,17 @@ namespace Recipe.Services
             if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
                 return null;
 
-            return await _httpClient.GetFromJsonAsync<RecipeAPIResponse>($"{Constants.API_RECIPE_RANDOM}?apiKey={Constants.API_KEY}&{Constants.API_RECIPE_RANDOM_NUMBER}={Constants.API_RECIPE_NUMBER_OF_RECIPE}");
+            return await _httpClient.GetFromJsonAsync<RecipeAPIResponse>($"{Constants.API_RECIPE_RANDOM}?apiKey={Constants.API_KEY}&{Constants.API_RECIPE_RANDOM_NUMBER}=1");
         }
+        
+        public async Task<RecipeAPIResponse> GetRecipeBySearch(string search)
+        {
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+                return null;
+
+            return await _httpClient.GetFromJsonAsync<RecipeAPIResponse>($"{Constants.API_RECIPE_SEARCH}?{Constants.API_RECIPE_SEARCH_QUERY}={search}&apiKey={Constants.API_KEY}");
+        }
+
+        //public async Task<RecipeAPIResponse> Get
     }
 }

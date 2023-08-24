@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace Recipe
         public const string API_KEY = "63545f6766ff4238a36a974f0a9b741d";
         public const string API_BASE_URL = "https://api.spoonacular.com/recipes/";
         public const string API_RECIPE_SEARCH = "complexSearch";
+        public const string API_RECIPE_SEARCH_QUERY = "query";
         public const string API_RECIPE_INFO = "{0}/information";
         public const string API_RECIPE_INGREDIENTS = "{0}/ingredientWidget.json";
         public const string API_RECIPE_ANALYZE = "{0}/analyzeInstructions";

@@ -38,7 +38,7 @@
                         
                     </RoundRectangle>
                 </Border.StrokeShape>
-                <Image Source="{Binding ImageURL}"
+                <Image Source="{Binding RecipeList[0].ImageURL}"
                        WidthRequest="500"
                        HeightRequest="300">
                 </Image>
@@ -59,9 +59,9 @@
             <BoxView Color="Orange"
                  HeightRequest="100"
                  CornerRadius="20"/>
-            --><!--<BoxView Color="Purple"
+            <BoxView Color="Purple"
                  HeightRequest="100"
-                 CornerRadius="20"/>--><!--
+                 CornerRadius="20"/>
         </StackLayout>-->
     </ContentPage>
 

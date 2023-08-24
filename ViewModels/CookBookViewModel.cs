@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Recipe.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,9 @@ namespace Recipe.ViewModels
             var randomRecipeApiResponse = await _RecipeApiService.GetRandomRecipe();
             if (randomRecipeApiResponse != null)
             {
+                //Debug.WriteLine("Image : " + randomRecipeApiResponse.recipes[0].image);
+                //_recipeHandler.Add(new RecipeItem(randomRecipeApiResponse.recipes[0].image, randomRecipeApiResponse.recipes[0].title, randomRecipeApiResponse.recipes[0].summary));
+
                 for (int i = 0; i < Constants.API_RECIPE_NUMBER_OF_RECIPE; i++)
                 {
                     _recipeHandler.Add(new RecipeItem(randomRecipeApiResponse.recipes[i].image, randomRecipeApiResponse.recipes[i].title, randomRecipeApiResponse.recipes[i].summary));
@@ -52,10 +56,9 @@ namespace Recipe.ViewModels
                 //Title = randomRecipeApiResponse.recipes[0].title;
                 //Summary = randomRecipeApiResponse.recipes[0].summary;
             }
-            Debug.WriteLine("Fetch API !");
         }
 
-        public List<RecipeItem> RecipeList => _recipeHandler.RecipeList;
+        public ObservableCollection<RecipeItem> RecipeList => _recipeHandler.RecipeList;
 
         //public List<RecipeItem> GetRecipeList()
         //{
@@ -65,11 +68,11 @@ namespace Recipe.ViewModels
 
     public class RecipeHandler
     {
-        public List<RecipeItem> RecipeList { get; private set; }
+        public ObservableCollection<RecipeItem> RecipeList { get; private set; }
 
         public RecipeHandler()
         {
-            RecipeList = new List<RecipeItem>();
+            RecipeList = new ObservableCollection<RecipeItem>();
         }
         
         public void Add(RecipeItem recipeItem)

@@ -12,9 +12,9 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		//MainPage = new NavigationPage(new NavPageHome());
-		//      MainPage.BackgroundColor = Color.FromArgb("#FCFCFC");
-		//NavigationPage.BarTextColor = Color.White;
+        //MainPage = new NavigationPage(new NavPageHome());
+        //      MainPage.BackgroundColor = Color.FromArgb("#FCFCFC");
+        //NavigationPage.BarTextColor = Color.White;
 
 #if ANDROID || IOS
 		MainPage = new RecipeTabbedPage();
@@ -22,6 +22,7 @@ public partial class App : Application
         MainPage = new MyFlyoutPage();
 #endif
         BindingContext = new CookBookViewModel();
+
     }
 
 

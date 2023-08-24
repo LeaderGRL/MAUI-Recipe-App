@@ -8,11 +8,27 @@
              Title="MyFlyoutPage">
     <FlyoutPage.Flyout>
         <ContentPage Title="My APP" BackgroundColor="White">
-            <VerticalStackLayout>
-                <Label Text="This is my first flyout page !" HorizontalTextAlignment ="Center" Margin="20">
-                    
-                </Label>
-            </VerticalStackLayout>
+            <ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" RowHeight="100" SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:RecipeItem">
+                        <ViewCell>
+                            <StackLayout>
+                                <Border HeightRequest="100">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="20">
+
+                                        </RoundRectangle>
+                                    </Border.StrokeShape>
+                                    <Image Source="{Binding ImageURL}"
+                                                    Aspect="AspectFill">
+                                    </Image>
+                                </Border>
+                                <Label Text="test !"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </ContentPage>
     </FlyoutPage.Flyout>
 
@@ -20,51 +36,32 @@
         <NavigationPage>
             <x:Arguments>
                 <ContentPage BackgroundColor="ForestGreen">
-                    <!--<Label Text="test"></Label>-->
-                    <ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" RowHeight="100" SelectionMode="None">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="vm:RecipeItem">
-                                <ViewCell>
-                                    <StackLayout>
-                                        <Border HeightRequest="100">
-                                            <Border.StrokeShape>
-                                                <RoundRectangle CornerRadius="20">
+                    <ContentPage.BindingContext>
+                        <vm:CookBookViewModel></vm:CookBookViewModel>
+                    </ContentPage.BindingContext>
+                    <ContentPage.Content>
+                        <!--<ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" RowHeight="100" SelectionMode="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="vm:RecipeItem">
+                                    <ViewCell>
+                                        <StackLayout>
+                                            <Border HeightRequest="100">
+                                                <Border.StrokeShape>
+                                                    <RoundRectangle CornerRadius="20">
 
-                                                </RoundRectangle>
-                                            </Border.StrokeShape>
-                                            <Image Source="{Binding ImageURL}"
-                                    WidthRequest="500"
-                                    HeightRequest="300">
-                                            </Image>
-                                        </Border>
-                                        <Label Text="test !"></Label>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <!--<StackLayout Margin="20" Spacing="20">
-                       
-
-                        <BoxView Color="Red"
-                            HeightRequest="100"
-                            CornerRadius="20"/>
-                        <BoxView Color="Yellow"
-                            HeightRequest="100" 
-                            CornerRadius="20"/>
-                        <BoxView Color="Blue"
-                            HeightRequest="100"
-                            CornerRadius="20"/>
-                        <BoxView Color="Green"
-                            HeightRequest="100"
-                            CornerRadius="20"/>
-                        <BoxView Color="Orange"
-                            HeightRequest="100"
-                            CornerRadius="20"/>
-                        <BoxView Color="Purple"
-                            HeightRequest="100"
-                            CornerRadius="20"/>
-                    </StackLayout>-->
+                                                    </RoundRectangle>
+                                                </Border.StrokeShape>
+                                                <Image Source="{Binding ImageURL}"
+                                                    Aspect="AspectFit">
+                                                </Image>
+                                            </Border>
+                                            <Label Text="test !"></Label>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>-->
+                    </ContentPage.Content>
                 </ContentPage>
             </x:Arguments>
         </NavigationPage>

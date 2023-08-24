@@ -60,15 +60,11 @@ namespace Recipe.ViewModels
 
         public ObservableCollection<RecipeItem> RecipeList => _recipeHandler.RecipeList;
 
-        //public List<RecipeItem> GetRecipeList()
-        //{
-        //    return _recipeHandler.RecipeList;
-        //}
     }
 
     public class RecipeHandler
     {
-        public ObservableCollection<RecipeItem> RecipeList { get; private set; }
+        public ObservableCollection<RecipeItem> RecipeList { get; private set; } // ObservableCollection is a list that can be update by UI notification
 
         public RecipeHandler()
         {

@@ -10,12 +10,12 @@
             SelectedTabColor="Green"
             UnselectedTabColor="Black">
     <ContentPage Title="CookBook" IconImageSource="cookbook_icon.png">
-        <ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" RowHeight="100" SelectionMode="None">
+        <ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" HasUnevenRows="true" RowHeight="100" SelectionMode="None" >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="vm:RecipeItem">
                     <ViewCell>
                         <StackLayout>
-                            <Border HeightRequest="100">
+                            <Border HeightRequest="100" Margin="-10">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="20">
 

@@ -8,12 +8,12 @@
              Title="MyFlyoutPage">
     <FlyoutPage.Flyout>
         <ContentPage Title="My APP" BackgroundColor="White">
-            <ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" RowHeight="100" SelectionMode="None">
+            <ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" HasUnevenRows="True"  RowHeight="-1" SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="vm:RecipeItem">
                         <ViewCell>
-                            <StackLayout>
-                                <Border HeightRequest="100">
+                            <StackLayout Spacing="200">
+                                <Border HeightRequest="100" Margin="20">
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="20">
 
@@ -23,7 +23,6 @@
                                                     Aspect="AspectFill">
                                     </Image>
                                 </Border>
-                                <Label Text="test !"></Label>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

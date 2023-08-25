@@ -1,6 +1,7 @@
 ﻿using Recipe.Models.API;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
@@ -27,12 +28,13 @@ namespace Recipe.Services
             return await _httpClient.GetFromJsonAsync<RecipeAPIResponse>($"{Constants.API_RECIPE_RANDOM}?apiKey={Constants.API_KEY}&{Constants.API_RECIPE_RANDOM_NUMBER}=1");
         }
         
-        public async Task<RecipeAPIResponse> GetRecipeBySearch(string search)
+        public async Task<SearchRecipe> GetRecipeBySearch(string search)
         {
+            Debug.WriteLine(Constants.API_RECIPE_SEARCH + "?" + Constants.API_RECIPE_SEARCH_QUERY + "=" + search + "&apiKey=" + Constants.API_KEY);
             if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
                 return null;
 
-            return await _httpClient.GetFromJsonAsync<RecipeAPIResponse>($"{Constants.API_RECIPE_SEARCH}?{Constants.API_RECIPE_SEARCH_QUERY}={search}&apiKey={Constants.API_KEY}");
+            return await _httpClient.GetFromJsonAsync<SearchRecipe>($"{Constants.API_RECIPE_SEARCH}?{Constants.API_RECIPE_SEARCH_QUERY}={search}&apiKey={Constants.API_KEY}");
         }
 
         //public async Task<RecipeAPIResponse> Get

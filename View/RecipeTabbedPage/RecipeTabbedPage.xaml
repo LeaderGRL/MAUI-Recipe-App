@@ -4,6 +4,7 @@
              x:Class="Recipe.View.RecipeTabbedPage.RecipeTabbedPage"
              xmlns:vm="clr-namespace:Recipe.ViewModels"
              x:DataType="vm:CookBookViewModel"
+             xmlns:m="clr-namespace:Recipe.Models"
              Title="RecipeTabbedPage"
             xmlns:Android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
             Android:TabbedPage.ToolbarPlacement="Bottom"
@@ -14,13 +15,12 @@
             <Label Text="CookBook" TextColor="Green" HorizontalOptions="Start" FontSize="24" Margin="40, 20, 0, 0" FontFamily="InterBold"></Label>
             <SearchBar
                 Placeholder="Search recipe..."
-                TextChanged="SearchBer_TextChanged"
-                >
+                Text="{Binding SearchText}">
                 
             </SearchBar>
             <ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" HasUnevenRows="true" RowHeight="100" SelectionMode="None" >
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="vm:RecipeItem">
+                    <DataTemplate x:DataType="m:RecipeItem">
                         <ViewCell>
                             <Grid>
                                 <Border HeightRequest="100" Margin="10">

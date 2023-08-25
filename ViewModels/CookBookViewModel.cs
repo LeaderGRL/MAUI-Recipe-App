@@ -33,8 +33,13 @@ namespace Recipe.ViewModels
         {
             await FetchRandomRecipeInformation();
         }
-        
-        
+
+        private async void CallSearchRecipeAPI()
+        {
+            await SearchList(_keyword);
+        }
+
+
 
         [RelayCommand] // When event is trigger, call the associeted method in the view model
         private async Task FetchRandomRecipeInformation()
@@ -43,7 +48,7 @@ namespace Recipe.ViewModels
             if (randomRecipeApiResponse != null)
             {
                 //Debug.WriteLine("Image : " + randomRecipeApiResponse.recipes[0].image);
-                _recipeHandler.Add(new RecipeItem(randomRecipeApiResponse.recipes[0].image, randomRecipeApiResponse.recipes[0].title, randomRecipeApiResponse.recipes[0].summary));
+                _recipeHandler.Add(new RecipeItem(randomRecipeApiResponse.recipes[0].image, randomRecipeApiResponse.recipes[0].title));
 
                 //for (int i = 0; i < Constants.API_RECIPE_NUMBER_OF_RECIPE; i++)
                 //{
@@ -63,14 +68,24 @@ namespace Recipe.ViewModels
             {
                 for (int i = 0; i < Constants.API_RECIPE_NUMBER_OF_RECIPE; i++)
                 {
-                    _recipeHandler.Add(new RecipeItem(recipeBySearch.recipes[i].image, recipeBySearch.recipes[i].title, recipeBySearch.recipes[i].summary));
+                    _recipeHandler.Add(new RecipeItem(recipeBySearch.results[i].image, recipeBySearch.results[i].title));
                 }
             }
         }
 
-        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        public string SearchText
         {
-            _keyword = e.NewTextValue;
+            get => _keyword;
+            set
+            {
+                _keyword = value; // Update tbe _keyword variable when the searchbar text change
+                OnSearchTextChanged();
+            }
+        }
+
+        private void OnSearchTextChanged()
+        {
+            //_keyword = e.NewTextValue;
             if (string.IsNullOrEmpty(_keyword))
             {
                 
@@ -90,12 +105,11 @@ namespace Recipe.ViewModels
                 _debounceTimer.Elapsed -= OnDebounceElapsed;
 
             }
-            else
-            {
-                _debounceTimer = new System.Timers.Timer(timer);
-                _debounceTimer.Elapsed += OnDebounceElapsed;
-                _debounceTimer.Start();
-            }
+            
+            _debounceTimer = new System.Timers.Timer(timer);
+            _debounceTimer.Elapsed += OnDebounceElapsed;
+            _debounceTimer.Start();
+            
            
         }
 
@@ -104,20 +118,33 @@ namespace Recipe.ViewModels
             _debounceTimer.Stop();
             _debounceTimer.Elapsed -= OnDebounceElapsed;
 
-            SearchList(_keyword);
+            CallSearchRecipeAPI();
         }
 
-        private async void SearchList(string keyword)
+        [RelayCommand]
+        private async Task SearchList(string keyword)
         {
-
             //var RecipeSearch = RecipeList.Where(x => x.Title.Contains(keyword, StringComparison.OrdinalIgnoreCase)).ToList(); 
             var recipeSearch = await _RecipeApiService.GetRecipeBySearch(_keyword);
 
-            if (recipeSearch != null)
+            if (recipeSearch.results.Length != 0)
             {
-                for (int i = 0; i < Constants.API_RECIPE_NUMBER_OF_RECIPE; i++)
+                if (recipeSearch.totalResults > 9)
                 {
-                    _recipeHandler.Add(new RecipeItem(recipeSearch.recipes[i].image, recipeSearch.recipes[i].title, recipeSearch.recipes[i].summary));
+                    recipeSearch.totalResults = 9;
+                }
+
+                for (int i = 0; i < recipeSearch.totalResults; i++)
+                {
+                    if (_recipeHandler != null)
+                    {
+                        Debug.WriteLine("Test : " + recipeSearch.results[i].image);
+                        _recipeHandler.Add(new RecipeItem(recipeSearch.results[i].image, recipeSearch.results[i].title));
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Erreur !");
+                    }
                 }
             }
         }

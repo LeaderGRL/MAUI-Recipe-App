@@ -15,14 +15,14 @@ namespace Recipe.Models
         [ObservableProperty]
         public String title;
 
-        [ObservableProperty]
-        public String summary;
+        //[ObservableProperty]
+        //public String summary;
 
-        public RecipeItem(String imageURL, String title, String summary)
+        public RecipeItem(String imageURL, String title)
         {
             ImageURL = imageURL;
             Title = title;
-            Summary = summary;
+            //Summary = summary;
         }
     }
 }

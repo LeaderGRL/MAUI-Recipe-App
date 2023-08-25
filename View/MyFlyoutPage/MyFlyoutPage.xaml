@@ -9,26 +9,33 @@
              Title="MyFlyoutPage">
     <FlyoutPage.Flyout>
         <ContentPage Title="My APP" BackgroundColor="White">
-            <ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" HasUnevenRows="True"  RowHeight="-1" SelectionMode="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="m:RecipeItem">
-                        <ViewCell>
-                            <StackLayout Spacing="200">
-                                <Border HeightRequest="100" Margin="20">
-                                    <Border.StrokeShape>
-                                        <RoundRectangle CornerRadius="20">
+            <StackLayout>
+                <Label Text="CookBook" TextColor="Green" HorizontalOptions="Start" FontSize="24" Margin="40, 20, 0, 0" FontFamily="InterBold"></Label>
+                <SearchBar
+                    Placeholder="Search recipe..."
+                    Text="{Binding SearchText}">
+                </SearchBar>
+                <ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" HasUnevenRows="True"  RowHeight="-1" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="m:RecipeItem">
+                            <ViewCell>
+                                <StackLayout Spacing="200">
+                                    <Border HeightRequest="100" Margin="20">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="20">
 
-                                        </RoundRectangle>
-                                    </Border.StrokeShape>
-                                    <Image Source="{Binding ImageURL}"
-                                                    Aspect="AspectFill">
-                                    </Image>
-                                </Border>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                            </RoundRectangle>
+                                        </Border.StrokeShape>
+                                        <Image Source="{Binding ImageURL}"
+                                                        Aspect="AspectFill">
+                                        </Image>
+                                    </Border>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </ContentPage>
     </FlyoutPage.Flyout>
 

@@ -122,31 +122,36 @@ namespace Recipe.ViewModels
         }
 
         [RelayCommand]
+        [Obsolete]
         private async Task SearchList(string keyword)
         {
             //var RecipeSearch = RecipeList.Where(x => x.Title.Contains(keyword, StringComparison.OrdinalIgnoreCase)).ToList(); 
             var recipeSearch = await _RecipeApiService.GetRecipeBySearch(_keyword);
 
-            if (recipeSearch.results.Length != 0)
+            Device.BeginInvokeOnMainThread(() => // This allow to modify UI on the main UI thread and avoid errors. Its an obsolete function -> better use Dispatch
             {
-                if (recipeSearch.totalResults > 9)
-                {
-                    recipeSearch.totalResults = 9;
-                }
 
-                for (int i = 0; i < recipeSearch.totalResults; i++)
+                if (recipeSearch.results.Length != 0)
                 {
-                    if (_recipeHandler != null)
+                    if (recipeSearch.totalResults > 9)
                     {
-                        Debug.WriteLine("Test : " + recipeSearch.results[i].image);
-                        _recipeHandler.Add(new RecipeItem(recipeSearch.results[i].image, recipeSearch.results[i].title));
+                        recipeSearch.totalResults = 9;
                     }
-                    else
+
+                    for (int i = 0; i < recipeSearch.totalResults; i++)
                     {
-                        Debug.WriteLine("Erreur !");
+                        if (_recipeHandler != null)
+                        {
+                            Debug.WriteLine("Test : " + recipeSearch.results[i].image);
+                            _recipeHandler.Add(new RecipeItem(recipeSearch.results[i].image, recipeSearch.results[i].title));
+                        }
+                        else
+                        {
+                            Debug.WriteLine("Erreur !");
+                        }
                     }
                 }
-            }
+            });
         }
     }
 

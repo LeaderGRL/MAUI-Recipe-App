@@ -6,10 +6,6 @@ public class SearchRecipe
     public int number { get; set; }
     public int totalResults { get; set; }
 }
-public class Rootobject
-{
-  
-}
 
 public class Result
 {

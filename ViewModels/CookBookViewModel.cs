@@ -169,24 +169,4 @@ namespace Recipe.ViewModels
             RecipeList.Add(recipeItem);
         }
     }
-
-    
-    //public partial class RecipeItem : ObservableObject
-    //{
-    //    [ObservableProperty]
-    //    public String imageURL;
-
-    //    [ObservableProperty]
-    //    private String title;
-
-    //    [ObservableProperty]
-    //    private String summary;
-
-    //    public RecipeItem(String imageURL, String title, String summary)
-    //    {
-    //        ImageURL = imageURL;
-    //        Title = title;
-    //        Summary = summary;
-    //    }
-    //}
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe.View.MyFlyoutPage.RecipeDetail"
+             xmlns:vm="clr-namespace:Recipe.ViewModels"
+             x:Name="this">
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <Frame>
+                <StackLayout>
+                    <Image Source="{Binding ImageURL}"></Image>
+                    <Label Text="{Binding Title}" HorizontalOptions="Center" FontSize="48" FontFamily="InterBold"></Label>
+                    <Label Text="Time" HorizontalOptions="Center" FontSize="18" FontFamily="InterBold"></Label>
+                    <Label Text="{Binding Time}" HorizontalOptions="Center" FontSize="48" FontFamily="InterBold"></Label>
+                    <Label Text="Serving" HorizontalOptions="Center" FontSize="18" FontFamily="InterBold"></Label>
+                    <Label Text="{Binding Serving}" HorizontalOptions="Center" FontSize="48" FontFamily="InterBold"></Label>
+                    <Label Text="Ingredients" FontSize="48" FontFamily="InterBold"></Label>
+                    <ListView>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label Text="{TemplateBinding Name}" FontSize="18" FontFamily="InterBold"></Label>
+                                        <Label Text="{Binding Quantity}" FontSize="18" FontFamily="InterBold"></Label>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Label Text="Steps" FontSize="48" FontFamily="InterBold"></Label>
+                    <ListView>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label Text="{Binding Step}" FontSize="18" FontFamily="InterBold"></Label>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>

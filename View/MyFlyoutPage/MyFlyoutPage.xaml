@@ -5,6 +5,7 @@
              x:Class="Recipe.View.MyFlyoutPage.MyFlyoutPage"
              xmlns:vm="clr-namespace:Recipe.ViewModels"
              xmlns:m="clr-namespace:Recipe.Models"
+             xmlns:controls="clr-namespace:Recipe.View.MyFlyoutPage"
              x:DataType="vm:CookBookViewModel"
              Title="MyFlyoutPage">
     <FlyoutPage.Flyout>
@@ -46,29 +47,9 @@
                     <ContentPage.BindingContext>
                         <vm:CookBookViewModel></vm:CookBookViewModel>
                     </ContentPage.BindingContext>
-                    <ContentPage.Content>
-                        <!--<ListView x:Name="RecipeList" ItemsSource="{Binding RecipeList}" Margin="20" RowHeight="100" SelectionMode="None">
-                            <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="vm:RecipeItem">
-                                    <ViewCell>
-                                        <StackLayout>
-                                            <Border HeightRequest="100">
-                                                <Border.StrokeShape>
-                                                    <RoundRectangle CornerRadius="20">
-
-                                                    </RoundRectangle>
-                                                </Border.StrokeShape>
-                                                <Image Source="{Binding ImageURL}"
-                                                    Aspect="AspectFit">
-                                                </Image>
-                                            </Border>
-                                            <Label Text="test !"></Label>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>-->
-                    </ContentPage.Content>
+                    <controls:RecipeDetail Name="test">
+                        <!-- Custom controls allow to display view from another view -->
+                     </controls:RecipeDetail>
                 </ContentPage>
             </x:Arguments>
         </NavigationPage>

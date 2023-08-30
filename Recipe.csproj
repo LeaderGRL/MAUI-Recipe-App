@@ -83,6 +83,9 @@
 	  <MauiXaml Update="View\Home.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\MyFlyoutPage\RecipeDetail.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\NavPages\NavPageHome.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
